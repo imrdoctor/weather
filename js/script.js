@@ -1,39 +1,41 @@
 "use strict"
 // Api = https://api.weatherapi.com/v1/forecast.json?key=1953dc99c2e348fd8b205549242906&q=London&days=3&aqi=no&alerts=no
 // search input
-let search = document.querySelector(".search input")
-let getLocalLoction = document.querySelector(".currentLocation")
+const search = document.querySelector(".search input")
+const getLocalLoction = document.querySelector(".currentLocation")
 // Today Elments
-let todayName = document.querySelector(".tody-Name");
-let todayDate = document.querySelector(".tody-dates");
-let countryName = document.querySelectorAll(".country_name");
-let todayTemp = document.querySelector(".today-temp");
-let todayIcon = document.querySelector(".today-icon");
-let todayWeather = document.querySelector(".tody-weather"); // نص حالة الطقس مثال (مشمس)
+const todayName = document.querySelector(".tody-Name");
+const todayDate = document.querySelector(".tody-dates");
+const countryName = document.querySelectorAll(".country_name");
+const todayTemp = document.querySelector(".today-temp");
+const todayIcon = document.querySelector(".today-icon");
+const todayWeather = document.querySelector(".tody-weather"); // نص حالة الطقس مثال (مشمس)
 // today footer
-let todayMoisture = document.querySelector(".moisture_value");
+const todayMoisture = document.querySelector(".moisture_value");
 // 
-let todayWinds = document.querySelector(".winds_value");
+const todayWinds = document.querySelector(".winds_value");
 // 
-let todayDirection = document.querySelector(".direction_value");
+const todayDirection = document.querySelector(".direction_value");
 // Next Date
-let nextDayName = document.getElementsByClassName("next-day-name")
-let nextTempDate = document.getElementsByClassName("nextTemp-date")
-let nextWeather = document.getElementsByClassName("next-weather")
-let nextDayIcon = document.getElementsByClassName("next-day-icon")
-let nexLowTemp = document.getElementsByClassName("low_temperature__Value")
+const nextDayName = document.getElementsByClassName("next-day-name")
+const nextTempDate = document.getElementsByClassName("nextTemp-date")
+const nextWeather = document.getElementsByClassName("next-weather")
+const nextDayIcon = document.getElementsByClassName("next-day-icon")
+const nexLowTemp = document.getElementsByClassName("low_temperature__Value")
 // error masge
-let errorMsg = document.querySelector(".error")
+const errorMsg = document.querySelector(".error")
+const kay = "1953dc99c2e348fd8b205549242906"
+const api = `https://api.weatherapi.com/v1/forecast.json?key=${kay}&q=`
 // Fetch From Api Date
 async function getWeatherDate(cityName){
-    let weatherResponse =  await fetch (`https://api.weatherapi.com/v1/forecast.json?key=1953dc99c2e348fd8b205549242906&q=${cityName}&days=3&aqi=no&alerts=no`)
+    let weatherResponse =  await fetch (`${api}${cityName}&days=3&aqi=no&alerts=no`)
     let weatherDate = await weatherResponse.json()
     return weatherDate
 }
 let cityName = '';
 search.addEventListener("input", function serchContry() {
-    cityName = search.value.trim(); // قم بتحديث قيمة cityName عندما يتم إدخال بحث جديد
-    callAllDate(cityName); // استدعاء callAllDate مع القيمة الجديدة ل cityName
+    cityName = search.value.trim(); 
+    callAllDate(cityName); 
 });
 // Display Today Date
 function displayTodayDate(date) {
@@ -80,15 +82,14 @@ function displayNextDates(date) {
 
 async function fetchIPData() {
     const apiKey = 'ddb88936cd9bcef4c2c5d22b93b552e4f327b3cbfd4e586ac7a55030'; // Replace with your ipdata.co API key
-    const ipAddress = ''; // Leave empty to let ipdata.co detect visitor's IP automatically
-
+    const ipAddress = ''; // الايبي هيتجاب هنا من api
     try {
         const response = await fetch(`https://api.ipdata.co/${ipAddress}?api-key=${apiKey}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        return data.country_name; // Return country_name
+        return data.country_name; 
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -113,7 +114,7 @@ async function callAllDate (cityName) {
 }
 callAllDate(cityName);
 getLocalLoction.addEventListener("click", async function currentlocation(){
-    const ipcountryName = await fetchIPData();
+     const ipcountryName = await fetchIPData(); // بلد الشخص الحاليه
     console.log(ipcountryName);
     callAllDate(ipcountryName); 
     search.value = null
