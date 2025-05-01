@@ -41,7 +41,7 @@ search.addEventListener("input", function serchContry() {
 function displayTodayDate(date) {
     todayName.innerHTML = new Date  (date.forecast.forecastday[0].date).toLocaleDateString('en-US', { weekday: 'long' });
     todayDate.innerHTML = date.forecast.forecastday[0].date
-    countryName.forEach(element => {element.innerHTML = date.location.name;});    // work in all cards loction name 
+    countryName.forEach(element => {element.innerHTML = date.location.name;});    
     todayTemp.innerHTML = date.current.temp_c
     todayIcon.setAttribute("src",date.current.condition.icon) 
     todayWeather.innerHTML = date.current.condition.text
@@ -81,7 +81,7 @@ function displayNextDates(date) {
 }
 
 async function fetchIPData() {
-    const apiKey = 'ddb88936cd9bcef4c2c5d22b93b552e4f327b3cbfd4e586ac7a55030'; // Replace with your ipdata.co API key
+    const apiKey = 'ddb88936cd9bcef4c2c5d22b93b552e4f327b3cbfd4e586ac7a55030'; 
     const ipAddress = ''; // الايبي هيتجاب هنا من api
     try {
         const response = await fetch(`https://api.ipdata.co/${ipAddress}?api-key=${apiKey}`);
