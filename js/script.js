@@ -24,7 +24,7 @@ const nextDayIcon = document.getElementsByClassName("next-day-icon")
 const nexLowTemp = document.getElementsByClassName("low_temperature__Value")
 // error masge
 const errorMsg = document.querySelector(".error")
-const kay = "1953dc99c2e348fd8b205549242906"
+const kay = "1953dc99c2e348fd8b205549242906" // It's supposed to be placed in .env (:
 const api = `https://api.weatherapi.com/v1/forecast.json?key=${kay}&q=`
 // Fetch From Api Date
 async function getWeatherDate(cityName){
@@ -81,7 +81,7 @@ function displayNextDates(date) {
 }
 
 async function fetchIPData() {
-    const apiKey = 'ddb88936cd9bcef4c2c5d22b93b552e4f327b3cbfd4e586ac7a55030'; 
+    const apiKey = 'ddb88936cd9bcef4c2c5d22b93b552e4f327b3cbfd4e586ac7a55030'; // It's supposed to be placed in .env (:
     const ipAddress = ''; // الايبي هيتجاب هنا من api
     try {
         const response = await fetch(`https://api.ipdata.co/${ipAddress}?api-key=${apiKey}`);
